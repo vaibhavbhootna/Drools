@@ -1,0 +1,47 @@
+package com.drools.poc
+ 
+import com.drools.poc.TestRecord
+import com.drools.poc.TestResult
+ 
+rule "Odd Rule"
+dialect "mvel" 
+    when
+        testRecord : TestRecord((integerValue & 1) == 1 && integerValue != 0  , testId: testRecordId , intValue :integerValue )
+    then
+        System.out.println( "Odd Rule- Test ID "+ testId );
+        TestResult $testResult = new TestResult();
+        $testResult.setTestrecordId(testId);
+        $testResult.setDescription("Odd Rule");
+        $testResult.setValueInteger(intValue * (-10));
+        insert($testResult);
+       
+end
+
+rule "Even Rule"
+dialect "mvel" 
+    when
+        testRecord : TestRecord((integerValue & 1) == 0 && integerValue != 0  , testId: testRecordId , intValue :integerValue )
+    then
+        System.out.println( "Even Rule- Test ID "+ testId );
+        TestResult $testResult = new TestResult();
+        $testResult.setTestrecordId(testId);
+        $testResult.setDescription("Even Rule");
+        $testResult.setValueInteger(intValue * (10));
+        insert($testResult);
+        
+       
+end
+
+rule "Zero Rule"
+dialect "mvel" 
+      when
+        testRecord : TestRecord(integerValue == 0  , testId: testRecordId , intValue :integerValue )
+    then
+        System.out.println( "Zero Rule- Test ID "+ testId );
+        TestResult $testResult = new TestResult();
+        $testResult.setTestrecordId(testId);
+        $testResult.setDescription("Zero Rule");
+        $testResult.setValueInteger(intValue);
+        insert($testResult);
+     
+end

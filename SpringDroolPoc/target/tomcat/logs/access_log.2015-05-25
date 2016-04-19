@@ -1,0 +1,3 @@
+127.0.0.1 - - [25/May/2015:09:47:01 +0530] "GET /SpringDrools HTTP/1.1" 302 - http-bio-8080-exec-1 0
+127.0.0.1 - - [25/May/2015:09:47:03 +0530] "GET /SpringDrools/ HTTP/1.1" 200 513 http-bio-8080-exec-2 1619
+127.0.0.1 - - [25/May/2015:09:47:10 +0530] "POST /SpringDrools/drools HTTP/1.1" 200 381 http-bio-8080-exec-3 2289
